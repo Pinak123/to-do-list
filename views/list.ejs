@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Todo list app</title>
-    <link href="/Todolist v1 Starting Styles/Todolist v1 Starting Styles/styles.css" rel="stylesheet" type="text/css">
-    <script src="/app2.js"></script>
-  </head>
-  <body>
-    <% 
-    if (day == "Saturday" || day == "Sunday") { %>
-      <h1 style="color:rgb(246, 124, 17)"><%=day %> Todo list</h1>
-      <% }else{ %>
-      <h1 style="color:rgb(246, 17, 17)"><%=day %> To do list</h1>
-      <% }   %>
-      
-      
-      
-    %> 
-    <ul id ="list">
-    <%
-  let getHtml=(list)=>{
-  var ht=""
-  if (list.length !== 0) {
-  for (var i=0; i<list.length; i++){%>
-   <li><%=list[i]%></li>
-  <%}
 
-};
-getHtml(l1);}
-    
-    
-    %>
-    </ul>
-    <form action="/" method="post">
-    <input type="text" name="InputItem">
-    <button type="submit" name="button">Add</button>  
-      
-    </form>
+<head>
+  <meta charset="utf-8">
+  <title>Todo list app</title>
+  <link href="/css/Todolist v1 Starting Styles/Todolist v1 Starting Styles/styles.css" rel="stylesheet" type="text/css">
+  <script src="/app2.js"></script>
+</head>
 
-  </body>
+<body>
+  <div class="box" id="heading">
+    <h1>
+      <%=title%>
+    </h1>
+  </div>
+  <div class="box">
+    
+      <% 
+        for (var i=0; i<l1.length; i++){%>
+          <div class="item">
+            <input type="checkbox">
+            <p><%=l1[i]%></p>
+          </div>
+            
+          <%}  
+        
+        %>
+  <form action="/" method="post">
+    <input type="text" name="InputItem" placeholder="New Item" autocomplete="off" autofocus>
+    <button type="submit" name="button" value = <%=title%> >+</button>
+
+  </form>
+  </div>
+
+
+</body>
+
 </html>

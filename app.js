@@ -15,44 +15,59 @@ var dates = new Date();
 let options = {
   weekday: "long",
   day: "numeric",
-  year: "numeric",
   month: "long",
 
 }
 var days = dates.toLocaleDateString("en-US", options);
 let todaysList = [];
-let getHtml = (list) => {
-  var ht = ""
-  for (var i = 0; i < list.length; i++) {
-    ht += `<li>${list[i]}</li>`
-  }
-  return ht;
-};
+let workItems = [];
+
+
 
 app.get('/', function (req, res) {
   res.render('list', {
-    day: days,
+    title: days,
     l1: todaysList
   });
 })
+app.get('/work', (req, res) => {
+  res.render('list', {
+    title: "Work",
+    l1: workItems
+  });
+})
+
 
 // public/Todolist v1 Starting Styles/Todolist v1 Starting Styles/styles.css
 app.post('/', (req, res) => {
   var data = req.body.InputItem;
-  if (data !== '') {
-     console.log(data);
-     todaysList.push(data);
-     res.redirect('/');
+  if (req.body.button == "Work"){
+    if (data !== '') {
+      workItems.push(data);
+      res.redirect('/work');
+    } else {
+      res.redirect('/work');
+    }
   }else{
-    res.redirect('/');
+    if (data !== '') {
+      // console.log(req.body);
+      todaysList.push(data);
+      res.redirect('/');
+    } else {
+      res.redirect('/');
+    }
   }
-  // console.log(data);
-  // todaysList.push(data);
-  // // data1 = getHtml(todaysList);
-  // // console.log(data1)
-  // res.redirect('/');
+
 })
-   
+app.post('/work', (req, res) => {
+  let items = req.body.InputItem;
+  if (items !== '') {
+    workItems.push(items);
+    res.redirect('/work');
+  } else {
+    res.redirect('/work');
+  }
+})
 
 
 
