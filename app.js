@@ -10,7 +10,6 @@ app.use('/', require(path.join(__dirname, 'rout/index.js')));
 
 app.set('view engine', 'ejs');
 
-let day = ""
 
 var dates = new Date();
 let options = {
@@ -30,7 +29,6 @@ let getHtml = (list) => {
   return ht;
 };
 
-let data1 = "";
 app.get('/', function (req, res) {
   res.render('list', {
     day: days,
@@ -38,16 +36,24 @@ app.get('/', function (req, res) {
   });
 })
 
-
+// public/Todolist v1 Starting Styles/Todolist v1 Starting Styles/styles.css
 app.post('/', (req, res) => {
   var data = req.body.InputItem;
-  console.log(data);
-  todaysList.push(data);
-  data1 = getHtml(todaysList);
-  console.log(data1)
-  res.redirect('/');
-
+  if (data !== '') {
+     console.log(data);
+     todaysList.push(data);
+     res.redirect('/');
+  }else{
+    res.redirect('/');
+  }
+  // console.log(data);
+  // todaysList.push(data);
+  // // data1 = getHtml(todaysList);
+  // // console.log(data1)
+  // res.redirect('/');
 })
+   
+
 
 
 

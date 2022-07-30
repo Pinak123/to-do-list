@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Todo list app</title>
-    <script src="../public/app2.js"></script>
+    <link href="/Todolist v1 Starting Styles/Todolist v1 Starting Styles/styles.css" rel="stylesheet" type="text/css">
+    <script src="/app2.js"></script>
   </head>
   <body>
     <% 
@@ -20,12 +21,13 @@
     <%
   let getHtml=(list)=>{
   var ht=""
+  if (list.length !== 0) {
   for (var i=0; i<list.length; i++){%>
    <li><%=list[i]%></li>
   <%}
 
 };
-getHtml(l1);
+getHtml(l1);}
     
     
     %>
